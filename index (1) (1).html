@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of Aqsa Shaikh — Computer Science and Engineering student and web developer." />
+  <title>Aqsa Shaikh | Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --surface: #121a2e;
+      --surface-2: #18233b;
+      --text: #eef2ff;
+      --muted: #aab5cc;
+      --accent: #8b9cff;
+      --accent-2: #6ee7d2;
+      --line: rgba(255,255,255,.11);
+      --shadow: 0 22px 60px rgba(0,0,0,.25);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0; color: var(--text); background:
+        radial-gradient(circle at 85% 5%, rgba(108,126,255,.18), transparent 28rem),
+        radial-gradient(circle at 5% 45%, rgba(110,231,210,.09), transparent 24rem), var(--bg);
+      font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: auto; }
+    header {
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(16px);
+      background: rgba(11,16,32,.82); border-bottom: 1px solid var(--line);
+    }
+    nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-weight: 800; letter-spacing: .08em; font-size: .92rem; }
+    .brand span { color: var(--accent-2); }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 22px; color: var(--muted); font-size: .9rem; }
+    .nav-links a:hover, .nav-links a:focus { color: var(--text); }
+    .menu { display: none; border: 1px solid var(--line); background: var(--surface); color: var(--text); border-radius: 10px; padding: 8px 12px; }
+    section { padding: 86px 0; }
+    .hero { min-height: 610px; display: grid; grid-template-columns: 1.3fr .7fr; align-items: center; gap: 48px; padding-top: 70px; }
+    .eyebrow { color: var(--accent-2); font-size: .78rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { font-size: clamp(3rem, 7vw, 5.6rem); line-height: .99; letter-spacing: -.06em; margin: 18px 0; }
+    h1 span { color: var(--accent); }
+    .lead { color: var(--muted); font-size: 1.12rem; max-width: 650px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 30px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 19px; border-radius: 999px; font-weight: 750; border: 1px solid var(--line); transition: .2s ease; }
+    .btn.primary { color: #0b1020; background: linear-gradient(120deg, var(--accent-2), #b5c0ff); border: 0; }
+    .btn:hover { transform: translateY(-2px); }
+    .hero-card { background: linear-gradient(145deg, rgba(139,156,255,.18), rgba(110,231,210,.07)); border: 1px solid var(--line); border-radius: 30px; padding: 30px; box-shadow: var(--shadow); }
+    .monogram { width: 110px; height: 110px; display: grid; place-items: center; border-radius: 28px; font-size: 2.8rem; font-weight: 850; color: #10172b; background: linear-gradient(135deg, var(--accent-2), #aab6ff); margin-bottom: 28px; }
+    .hero-card h2 { margin: 0 0 6px; font-size: 1.3rem; }
+    .hero-card p { color: var(--muted); margin: 0; }
+    .mini-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-top: 24px; }
+    .stat { padding: 15px; border-radius: 16px; background: rgba(8,13,27,.45); border: 1px solid var(--line); }
+    .stat strong { display: block; font-size: 1.35rem; color: var(--accent-2); }
+    .stat small { color: var(--muted); }
+    .section-head { margin-bottom: 34px; }
+    .section-head h2 { font-size: clamp(2rem,4vw,3rem); line-height: 1.1; margin: 9px 0; letter-spacing: -.04em; }
+    .section-head p { color: var(--muted); margin: 0; max-width: 680px; }
+    .grid { display: grid; gap: 18px; }
+    .skills-grid { grid-template-columns: repeat(4,1fr); }
+    .card { background: rgba(18,26,46,.88); border: 1px solid var(--line); border-radius: var(--radius); padding: 23px; box-shadow: var(--shadow); }
+    .skill-top { display: flex; justify-content: space-between; gap: 10px; font-weight: 750; }
+    .skill-top span:last-child { color: var(--accent-2); }
+    .track { height: 7px; background: #26314a; border-radius: 99px; margin-top: 17px; overflow: hidden; }
+    .fill { height: 100%; width: var(--level); border-radius: inherit; background: linear-gradient(90deg,var(--accent),var(--accent-2)); }
+    .two-col { grid-template-columns: 1fr 1fr; }
+    .item { position: relative; padding-left: 22px; border-left: 1px solid rgba(139,156,255,.45); }
+    .item:before { content:""; position:absolute; width:9px; height:9px; border-radius:50%; background:var(--accent-2); left:-5px; top:8px; }
+    .item h3 { margin: 0 0 5px; font-size: 1.1rem; }
+    .item .meta { color: var(--accent-2); font-size: .9rem; margin-bottom: 8px; }
+    .item p, .card p { color: var(--muted); margin: 0; }
+    .project-grid { grid-template-columns: repeat(2,1fr); }
+    .project-number { color: var(--accent-2); font-size: .8rem; font-weight: 800; letter-spacing: .12em; }
+    .card h3 { margin: 10px 0 8px; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 17px; }
+    .tag { font-size: .78rem; color: #dbe2ff; background: rgba(139,156,255,.12); border: 1px solid rgba(139,156,255,.2); padding: 5px 10px; border-radius: 999px; }
+    .cert-grid { grid-template-columns: repeat(2,1fr); }
+    .cert { display: flex; gap: 13px; align-items: flex-start; }
+    .cert-mark { flex: 0 0 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; background: rgba(110,231,210,.12); color: var(--accent-2); font-weight: 900; }
+    .cert p { color: var(--text); }
+    .language-row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .language-row span { border: 1px solid var(--line); border-radius: 999px; padding: 9px 15px; color: var(--muted); }
+    .bio-list { margin: 0; display: grid; grid-template-columns: 220px 1fr; }
+    .bio-list dt, .bio-list dd { margin: 0; padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .bio-list dt { color: var(--accent-2); font-weight: 750; font-size: .9rem; letter-spacing: .04em; }
+    .bio-list dd { color: var(--text); overflow-wrap: anywhere; }
+    .bio-list dt:last-of-type, .bio-list dd:last-of-type { border-bottom: 0; }
+    .contact-box { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: center; background: linear-gradient(130deg,rgba(139,156,255,.16),rgba(110,231,210,.08)); }
+    .contact-link { display: block; padding: 14px 0; border-bottom: 1px solid var(--line); color: var(--accent-2); overflow-wrap: anywhere; }
+    footer { border-top: 1px solid var(--line); padding: 26px 0; color: var(--muted); font-size: .88rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    @media (max-width: 850px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; padding: 72px 0 30px; }
+      .hero-card { max-width: 520px; }
+      .skills-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 30px,1120px); }
+      nav { min-height: 64px; }
+      .menu { display: block; }
+      .nav-links { display: none; position: absolute; left: 15px; right: 15px; top: 64px; padding: 18px; background: #121a2e; border: 1px solid var(--line); border-radius: 16px; flex-direction: column; gap: 14px; }
+      .nav-links.open { display: flex; }
+      section { padding: 65px 0; }
+      .skills-grid, .two-col, .project-grid, .cert-grid, .contact-box { grid-template-columns: 1fr; }
+      .bio-list { grid-template-columns: 1fr; }
+      .bio-list dt { padding: 14px 0 0; border-bottom: 0; }
+      .bio-list dd { padding: 2px 0 14px; }
+      .hero-card { padding: 23px; }
+    }
+    @media print {
+      header, .actions, footer { display:none; }
+      body { background:white; color:#111; }
+      .card,.hero-card { box-shadow:none; background:white; color:#111; border:1px solid #ddd; }
+      .lead,.card p,.item p,.section-head p { color:#444; }
+      .bio-list dd { color:#111; }
+      section { padding: 30px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap">
+      <a class="brand" href="#home">AQSA <span>SHAIKH</span></a>
+      <button class="menu" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">Menu</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a>
+        <a href="#resume">Resume</a><a href="#projects">Projects</a><a href="#bio-data">Bio-data</a><a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="wrap hero" id="home">
+      <div>
+        <div class="eyebrow">Computer Science & Engineering · Mangalore</div>
+        <h1>Hi, I'm<br><span>Aqsa Shaikh.</span></h1>
+        <p class="lead">A Computer Science and Engineering student with hands-on experience in web development, IoT and AI-based projects. Interested in building useful digital experiences and learning through practical work.</p>
+        <div class="actions">
+          <a class="btn primary" href="#resume">Explore my resume ↘</a>
+          <a class="btn" href="#bio-data">View bio-data</a>
+          <a class="btn" href="#contact">Get in touch</a>
+          <button class="btn" onclick="window.print()">Print / Save PDF</button>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <div class="monogram">AS</div>
+        <h2>Student · Web Developer</h2>
+        <p>P.A. College of Engineering, Mangalore</p>
+        <div class="mini-stats">
+          <div class="stat"><strong>8.0</strong><small>CGPA</small></div>
+          <div class="stat"><strong>4</strong><small>Academic projects</small></div>
+          <div class="stat"><strong>3 mo.</strong><small>Internship</small></div>
+          <div class="stat"><strong>5</strong><small>Languages</small></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="wrap" id="about">
+      <div class="section-head"><div class="eyebrow">A little about me</div><h2>Learning by building.</h2><p>I'm pursuing a BE in Computer Science and Engineering at P.A. College of Engineering, Mangalore. My experience spans a web development internship and coursework projects involving IoT, web technologies and AI.</p></div>
+      <div class="grid two-col">
+        <div class="card"><h3>Career objective</h3><p>To apply and grow my technical skills in a challenging environment while contributing to practical software and technology projects.</p></div>
+        <div class="card"><h3>Internship experience</h3><p><strong>Web Development Intern · Skill Duniya</strong><br>Completed a three-month internship and worked on an LMS (Learning Management System) based on Web AI.</p></div>
+      </div>
+    </section>
+
+    <section class="wrap" id="skills">
+      <div class="section-head"><div class="eyebrow">What I work with</div><h2>Technical skills</h2><p>Skill levels are reproduced from the supplied profile.</p></div>
+      <div class="grid skills-grid">
+        <div class="card"><div class="skill-top"><span>HTML</span><span>80%</span></div><div class="track"><div class="fill" style="--level:80%"></div></div></div>
+        <div class="card"><div class="skill-top"><span>CSS</span><span>75%</span></div><div class="track"><div class="fill" style="--level:75%"></div></div></div>
+        <div class="card"><div class="skill-top"><span>C Programming</span><span>55%</span></div><div class="track"><div class="fill" style="--level:55%"></div></div></div>
+        <div class="card"><div class="skill-top"><span>Python</span><span>50%</span></div><div class="track"><div class="fill" style="--level:50%"></div></div></div>
+      </div>
+      <div class="tag-list"><span class="tag">Python basics</span><span class="tag">C programming basics</span><span class="tag">Web development</span><span class="tag">IoT concepts</span></div>
+    </section>
+
+    <section class="wrap" id="resume">
+      <div class="section-head"><div class="eyebrow">Background</div><h2>Resume</h2><p>Education, practical experience and learning activities.</p></div>
+      <div class="grid two-col">
+        <div class="card">
+          <h3>Education</h3>
+          <div class="item"><h3>Bachelor of Engineering — Computer Science & Engineering</h3><div class="meta">P.A. College of Engineering, Mangalore · Currently in 3rd year</div><p>CGPA: 8.0</p></div>
+          <div class="item" style="margin-top:24px"><h3>Previous qualification</h3><div class="meta">Academic record</div><p>Percentage: 83%</p></div>
+        </div>
+        <div class="card">
+          <h3>Internship</h3>
+          <div class="item"><h3>Web Development Intern</h3><div class="meta">Skill Duniya · 3 months · Completed</div><p>Worked on an LMS (Learning Management System) based on Web AI.</p></div>
+          <h3 style="margin-top:30px">Workshops</h3>
+          <p>IoT Application Design · Embed Club<br>be10x AI Workshop<br>Hands-on Workshop on Game Development using Python</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" id="projects">
+      <div class="section-head"><div class="eyebrow">Selected academic work</div><h2>Projects</h2><p>Project descriptions below are based on the supplied bio-data; detailed implementation specifics were not provided.</p></div>
+      <div class="grid project-grid">
+        <article class="card"><div class="project-number">PROJECT 01</div><h3>Drone System</h3><p>A drone-based system project developed as part of engineering coursework.</p><div class="tag-list"><span class="tag">Engineering project</span></div></article>
+        <article class="card"><div class="project-number">PROJECT 02</div><h3>Smart Door Lock</h3><p>A smart, secure door locking system using IoT concepts.</p><div class="tag-list"><span class="tag">IoT</span><span class="tag">Security</span></div></article>
+        <article class="card"><div class="project-number">PROJECT 03</div><h3>Web AI Project</h3><p>A web-based project that integrates AI features.</p><div class="tag-list"><span class="tag">Web</span><span class="tag">AI</span></div></article>
+        <article class="card"><div class="project-number">PROJECT 04</div><h3>Adaptive Quiz Platform</h3><p>An online quiz platform designed to adapt to the learner.</p><div class="tag-list"><span class="tag">Web platform</span><span class="tag">Learning</span></div></article>
+      </div>
+    </section>
+
+    <section class="wrap" id="certifications">
+      <div class="section-head"><div class="eyebrow">Continuous learning</div><h2>Certifications & workshops</h2></div>
+      <div class="grid cert-grid">
+        <div class="card cert"><div class="cert-mark">✓</div><p>Salesforce Essentials and CRM Foundations</p></div>
+        <div class="card cert"><div class="cert-mark">✓</div><p>Workshop on IoT Application Design — Embed Club</p></div>
+        <div class="card cert"><div class="cert-mark">✓</div><p>be10x AI Workshop</p></div>
+        <div class="card cert"><div class="cert-mark">✓</div><p>Hands-on Workshop on Game Development using Python</p></div>
+        <div class="card cert"><div class="cert-mark">✓</div><p>Career Guidance Webinar</p></div>
+        <div class="card cert"><div class="cert-mark">✓</div><p>AI for Students: Generative AI Model</p></div>
+        <div class="card cert"><div class="cert-mark">✓</div><p>Infosys Certification</p></div>
+        <div class="card cert"><div class="cert-mark">✓</div><p>C Programming Basics</p></div>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="section-head"><div class="eyebrow">Communication</div><h2>Languages</h2></div>
+      <div class="language-row"><span>Urdu</span><span>English</span><span>Hindi</span><span>Kannada</span><span>Basic Malayalam</span></div>
+    </section>
+
+    <section class="wrap" id="bio-data">
+      <div class="section-head"><div class="eyebrow">Personal details</div><h2>Bio-data</h2><p>A quick summary of who I am.</p></div>
+      <div class="card">
+        <dl class="bio-list">
+          <dt>Full Name</dt><dd>Aqsa Shaikh</dd>
+          <dt>Father's Name</dt><dd>Mohammed Sharif</dd>
+          <dt>Mother's Name</dt><dd>Parveen Banu</dd>
+          <dt>Date of Birth</dt><dd>12 December 2006</dd>
+          <dt>Gender</dt><dd>Female</dd>
+          <dt>Nationality</dt><dd>Indian</dd>
+          <dt>Religion</dt><dd>Muslim</dd>
+          <dt>Languages Known</dt><dd>Urdu, English, Hindi, Kannada, basic Malayalam</dd>
+          <dt>Education</dt><dd>BE Computer Science & Engineering, P.A. College of Engineering, Mangalore (3rd Year, CGPA 8.0)</dd>
+          <dt>Hobbies</dt><dd>Gardening, Coding, Creating Websites</dd>
+          <dt>Address</dt><dd>Nadupadav, Kairangala, Mangalore, Karnataka</dd>
+          <dt>Email</dt><dd><a href="mailto:aqsashaikh0615@gmail.com" style="color:var(--accent-2)">aqsashaikh0615@gmail.com</a></dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="wrap" id="contact">
+      <div class="card contact-box">
+        <div><div class="eyebrow">Contact</div><h2 style="font-size:2.5rem;line-height:1.1;margin:12px 0">Let's connect.</h2><p>For opportunities, collaboration or professional enquiries, feel free to reach out.</p></div>
+        <div>
+          <a class="contact-link" href="mailto:aqsashaikh0615@gmail.com">aqsashaikh0615@gmail.com ↗</a>
+          <p style="margin-top:14px;color:var(--muted)">Mangalore, Karnataka, India</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><span>© <span id="year"></span> Aqsa Shaikh</span><span>Designed as a personal portfolio</span></div></footer>
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
